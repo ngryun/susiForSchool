@@ -294,10 +294,15 @@ class DepartmentSelector(tk.Tk):
     # ▶ 유틸 : 위젯 상태 잠금/해제
     # ------------------------------------------------------------
     def _set_widgets_state(self, state: str) -> None:
-        for child in self.main_frame.winfo_children():
-            for widget in child.winfo_children():
-                if isinstance(widget, (ttk.Button, ttk.Entry)):
-                    widget.configure(state=state)
+        """전체 위젯 트리의 상태를 재귀적으로 변경한다."""
+
+        def apply(widget):
+            for child in widget.winfo_children():
+                if isinstance(child, (ttk.Button, ttk.Entry, tk.Listbox)):
+                    child.configure(state=state)
+                apply(child)
+
+        apply(self.main_frame)
 
 
 # ------------------------------------------------------------
