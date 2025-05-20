@@ -103,9 +103,10 @@ def create_stats_html(stats: dict) -> str:
     # 플롯 데이터 스크립트 생성 함수 (수정됨: 평균 숫자 표시 제거)
 def create_plot_data_script(plot_id, data, y_positions, marker_styles, symbol_map=None):
     """
-    환산등급과 전교과 등급에 대한 박스플롯 데이터를 생성하는 JavaScript 코드 반환
-    추가 통계 정보를 함께 표시, 결과 순서 변경
-    모든 결과 카테고리(합격, 충원합격, 불합격)에 대해 항상 trace 생성
+    환산등급과 전교과 등급에 대한 박스플롯 데이터를 생성하는 JavaScript 코드 반환.
+    추가 통계 정보를 함께 표시하며 결과 순서를 변경한다.
+    모든 결과 카테고리(합격, 충원합격, 불합격)에 대해 항상 trace를 생성한다.
+    (script, conv_stats_html, all_subj_stats_html) 튜플을 반환한다.
     """
     color_map = {
         "합격": {"border": "#3366CC", "fill": "rgba(51, 102, 204, 0.3)"},
